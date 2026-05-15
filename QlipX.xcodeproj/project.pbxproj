@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		C8B11E4C2FB6E8DB0067FC68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8B11E322FB6E8DA0067FC68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8B11E392FB6E8DA0067FC68;
+			remoteInfo = QlipX;
+		};
+		C8B11E562FB6E8DB0067FC68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8B11E322FB6E8DA0067FC68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8B11E392FB6E8DA0067FC68;
+			remoteInfo = QlipX;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C8B11E3A2FB6E8DA0067FC68 /* QlipX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QlipX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8B11E4B2FB6E8DB0067FC68 /* QlipXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QlipXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8B11E552FB6E8DB0067FC68 /* QlipXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QlipXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C8B11E3C2FB6E8DA0067FC68 /* QlipX */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = QlipX;
+			sourceTree = "<group>";
+		};
+		C8B11E4E2FB6E8DB0067FC68 /* QlipXTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = QlipXTests;
+			sourceTree = "<group>";
+		};
+		C8B11E582FB6E8DB0067FC68 /* QlipXUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = QlipXUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C8B11E372FB6E8DA0067FC68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8B11E482FB6E8DB0067FC68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8B11E522FB6E8DB0067FC68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C8B11E312FB6E8DA0067FC68 = {
+			isa = PBXGroup;
+			children = (
+				C8B11E3C2FB6E8DA0067FC68 /* QlipX */,
+				C8B11E4E2FB6E8DB0067FC68 /* QlipXTests */,
+				C8B11E582FB6E8DB0067FC68 /* QlipXUITests */,
+				C8B11E3B2FB6E8DA0067FC68 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C8B11E3B2FB6E8DA0067FC68 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C8B11E3A2FB6E8DA0067FC68 /* QlipX.app */,
+				C8B11E4B2FB6E8DB0067FC68 /* QlipXTests.xctest */,
+				C8B11E552FB6E8DB0067FC68 /* QlipXUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C8B11E392FB6E8DA0067FC68 /* QlipX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8B11E5F2FB6E8DB0067FC68 /* Build configuration list for PBXNativeTarget "QlipX" */;
+			buildPhases = (
+				C8B11E362FB6E8DA0067FC68 /* Sources */,
+				C8B11E372FB6E8DA0067FC68 /* Frameworks */,
+				C8B11E382FB6E8DA0067FC68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C8B11E3C2FB6E8DA0067FC68 /* QlipX */,
+			);
+			name = QlipX;
+			packageProductDependencies = (
+			);
+			productName = QlipX;
+			productReference = C8B11E3A2FB6E8DA0067FC68 /* QlipX.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C8B11E4A2FB6E8DB0067FC68 /* QlipXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8B11E622FB6E8DB0067FC68 /* Build configuration list for PBXNativeTarget "QlipXTests" */;
+			buildPhases = (
+				C8B11E472FB6E8DB0067FC68 /* Sources */,
+				C8B11E482FB6E8DB0067FC68 /* Frameworks */,
+				C8B11E492FB6E8DB0067FC68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C8B11E4D2FB6E8DB0067FC68 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C8B11E4E2FB6E8DB0067FC68 /* QlipXTests */,
+			);
+			name = QlipXTests;
+			packageProductDependencies = (
+			);
+			productName = QlipXTests;
+			productReference = C8B11E4B2FB6E8DB0067FC68 /* QlipXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C8B11E542FB6E8DB0067FC68 /* QlipXUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8B11E652FB6E8DB0067FC68 /* Build configuration list for PBXNativeTarget "QlipXUITests" */;
+			buildPhases = (
+				C8B11E512FB6E8DB0067FC68 /* Sources */,
+				C8B11E522FB6E8DB0067FC68 /* Frameworks */,
+				C8B11E532FB6E8DB0067FC68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C8B11E572FB6E8DB0067FC68 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C8B11E582FB6E8DB0067FC68 /* QlipXUITests */,
+			);
+			name = QlipXUITests;
+			packageProductDependencies = (
+			);
+			productName = QlipXUITests;
+			productReference = C8B11E552FB6E8DB0067FC68 /* QlipXUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C8B11E322FB6E8DA0067FC68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					C8B11E392FB6E8DA0067FC68 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					C8B11E4A2FB6E8DB0067FC68 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = C8B11E392FB6E8DA0067FC68;
+					};
+					C8B11E542FB6E8DB0067FC68 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = C8B11E392FB6E8DA0067FC68;
+					};
+				};
+			};
+			buildConfigurationList = C8B11E352FB6E8DA0067FC68 /* Build configuration list for PBXProject "QlipX" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C8B11E312FB6E8DA0067FC68;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C8B11E3B2FB6E8DA0067FC68 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C8B11E392FB6E8DA0067FC68 /* QlipX */,
+				C8B11E4A2FB6E8DB0067FC68 /* QlipXTests */,
+				C8B11E542FB6E8DB0067FC68 /* QlipXUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C8B11E382FB6E8DA0067FC68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8B11E492FB6E8DB0067FC68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8B11E532FB6E8DB0067FC68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C8B11E362FB6E8DA0067FC68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8B11E472FB6E8DB0067FC68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8B11E512FB6E8DB0067FC68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C8B11E4D2FB6E8DB0067FC68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8B11E392FB6E8DA0067FC68 /* QlipX */;
+			targetProxy = C8B11E4C2FB6E8DB0067FC68 /* PBXContainerItemProxy */;
+		};
+		C8B11E572FB6E8DB0067FC68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8B11E392FB6E8DA0067FC68 /* QlipX */;
+			targetProxy = C8B11E562FB6E8DB0067FC68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C8B11E5D2FB6E8DB0067FC68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.8;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C8B11E5E2FB6E8DB0067FC68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.8;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		C8B11E602FB6E8DB0067FC68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QlipX/QlipX.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"QlipX/Preview Content\"";
+				DEVELOPMENT_TEAM = KZ26XLM495;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = emartx.QlipX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C8B11E612FB6E8DB0067FC68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QlipX/QlipX.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"QlipX/Preview Content\"";
+				DEVELOPMENT_TEAM = KZ26XLM495;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = emartx.QlipX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C8B11E632FB6E8DB0067FC68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KZ26XLM495;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.8;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = emartx.QlipXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QlipX.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/QlipX";
+			};
+			name = Debug;
+		};
+		C8B11E642FB6E8DB0067FC68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KZ26XLM495;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.8;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = emartx.QlipXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QlipX.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/QlipX";
+			};
+			name = Release;
+		};
+		C8B11E662FB6E8DB0067FC68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KZ26XLM495;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = emartx.QlipXUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = QlipX;
+			};
+			name = Debug;
+		};
+		C8B11E672FB6E8DB0067FC68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KZ26XLM495;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = emartx.QlipXUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = QlipX;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C8B11E352FB6E8DA0067FC68 /* Build configuration list for PBXProject "QlipX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8B11E5D2FB6E8DB0067FC68 /* Debug */,
+				C8B11E5E2FB6E8DB0067FC68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8B11E5F2FB6E8DB0067FC68 /* Build configuration list for PBXNativeTarget "QlipX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8B11E602FB6E8DB0067FC68 /* Debug */,
+				C8B11E612FB6E8DB0067FC68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8B11E622FB6E8DB0067FC68 /* Build configuration list for PBXNativeTarget "QlipXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8B11E632FB6E8DB0067FC68 /* Debug */,
+				C8B11E642FB6E8DB0067FC68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8B11E652FB6E8DB0067FC68 /* Build configuration list for PBXNativeTarget "QlipXUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8B11E662FB6E8DB0067FC68 /* Debug */,
+				C8B11E672FB6E8DB0067FC68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C8B11E322FB6E8DA0067FC68 /* Project object */;
+}
