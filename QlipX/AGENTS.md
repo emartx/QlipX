@@ -87,5 +87,6 @@ QlipX/
 - Do NOT work on post-v1.0 features (Persian localization, import, custom shortcuts, iCloud)
 
 # Current Priorities
-- [ ] **M1 — Project Setup:** Xcode project created, `LSUIElement=true`, SPM dependency added, folder structure in place, app launches with menu bar icon visible
+- [x] **M1 — Project Setup:** Xcode project created, `LSUIElement=true`, SPM dependency added, folder structure in place, app launches with menu bar icon visible
+- [ ] **M2 — Core Data Model + Persistence:** next milestone to start
 ```
