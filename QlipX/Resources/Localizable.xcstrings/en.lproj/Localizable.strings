@@ -1,0 +1,34 @@
+/* App title */
+"app.title" = "QlipX";
+
+/* Menu */
+"menu.about" = "About QlipX";
+"menu.exportJSON" = "Export as JSON";
+"menu.exportPlainText" = "Export as Plain Text";
+"menu.preferences" = "Preferences";
+"menu.quit" = "Quit QlipX";
+
+/* Shortcut */
+"shortcut.togglePanel" = "Toggle QlipX panel";
+
+/* Buttons */
+"button.copy" = "Copy";
+"button.cancel" = "Cancel";
+"button.save" = "Save";
+"button.edit" = "Edit";
+"button.delete" = "Delete";
+"button.addItem" = "Add Item";
+
+/* Labels */
+"label.search" = "Search snippets";
+"label.category" = "Category";
+"label.label" = "Label";
+"label.content" = "Content";
+
+/* Placeholders */
+"placeholder.search" = "Search...";
+"placeholder.newCategory" = "New category";
+
+/* Alerts */
+"alert.noResults" = "No results";
+"alert.confirmDelete" = "Are you sure you want to delete this item?";
