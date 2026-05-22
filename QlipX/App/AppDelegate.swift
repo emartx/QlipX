@@ -6,7 +6,15 @@
 //
 
 import AppKit
+import KeyboardShortcuts
 import SwiftUI
+
+extension KeyboardShortcuts.Name {
+    static let toggleQlipX = Self(
+        "toggleQlipX",
+        default: .init(.space, modifiers: [.command, .shift])
+    )
+}
 
 final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     private(set) var panel: NSPanel?
@@ -15,6 +23,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         panel = makePanel()
         statusItem = makeStatusItem()
+        registerGlobalShortcut()
     }
 
     private func makePanel() -> NSPanel {
@@ -63,6 +72,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
         NSApp.activate(ignoringOtherApps: true)
         panel.makeKeyAndOrderFront(sender)
+    }
+
+    private func registerGlobalShortcut() {
+        KeyboardShortcuts.onKeyUp(for: .toggleQlipX) { [weak self] in
+            self?.togglePanel(nil)
+        }
     }
 
     func windowShouldClose(_ sender: NSWindow) -> Bool {

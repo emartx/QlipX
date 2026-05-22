@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C80DEA632FBC3175003581B0 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = C80DEA642FBC3175003581B0 /* KeyboardShortcuts */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C8B11E4C2FB6E8DB0067FC68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C80DEA632FBC3175003581B0 /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = QlipX;
 			packageProductDependencies = (
+				C80DEA642FBC3175003581B0 /* KeyboardShortcuts */,
 			);
 			productName = QlipX;
 			productReference = C8B11E3A2FB6E8DA0067FC68 /* QlipX.app */;
@@ -565,6 +571,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C80DEA642FBC3175003581B0 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C80DEA622FBC3175003581B0 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C8B11E322FB6E8DA0067FC68 /* Project object */;
 }
