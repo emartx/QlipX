@@ -17,6 +17,10 @@ extension KeyboardShortcuts.Name {
 }
 
 final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
+    private enum DefaultsKey {
+        static let panelFrame = "qlipx.panelFrame"
+    }
+
     private(set) var panel: NSPanel?
     private var statusItem: NSStatusItem?
 
@@ -40,8 +44,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         panel.isReleasedWhenClosed = false
         panel.hidesOnDeactivate = false
         panel.delegate = self
-        panel.center()
         panel.contentView = NSHostingView(rootView: ContentView())
+        restorePanelFrame(panel)
 
         return panel
     }
@@ -80,8 +84,43 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         }
     }
 
+    private func restorePanelFrame(_ panel: NSPanel) {
+        guard
+            let frameString = UserDefaults.standard.string(forKey: DefaultsKey.panelFrame),
+            let frame = NSRectFromString(frameString).standardizedIfValid
+        else {
+            panel.center()
+            return
+        }
+
+        panel.setFrame(frame, display: false)
+    }
+
+    private func persistPanelFrame(_ window: NSWindow) {
+        UserDefaults.standard.set(NSStringFromRect(window.frame), forKey: DefaultsKey.panelFrame)
+    }
+
     func windowShouldClose(_ sender: NSWindow) -> Bool {
+        persistPanelFrame(sender)
         sender.orderOut(nil)
         return false
+    }
+
+    func windowDidMove(_ notification: Notification) {
+        guard let window = notification.object as? NSWindow else { return }
+        persistPanelFrame(window)
+    }
+
+    func windowDidResize(_ notification: Notification) {
+        guard let window = notification.object as? NSWindow else { return }
+        persistPanelFrame(window)
+    }
+}
+
+private extension NSRect {
+    var standardizedIfValid: NSRect? {
+        let rect = standardized
+        guard rect.width > 0, rect.height > 0 else { return nil }
+        return rect
     }
 }
