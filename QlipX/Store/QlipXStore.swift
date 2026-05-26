@@ -27,6 +27,14 @@ final class QlipXStore: ObservableObject {
         self.isAddFormVisible = isAddFormVisible
     }
 
+    convenience init(snapshot: Snapshot) {
+        self.init(categories: snapshot.categories)
+    }
+
+    var snapshot: Snapshot {
+        Snapshot(categories: categories)
+    }
+
     var filteredItems: [Item] {
         itemsForSelectedCategory.filter { item in
             guard !normalizedSearchQuery.isEmpty else {
@@ -120,6 +128,18 @@ final class QlipXStore: ObservableObject {
 
         if !categories.contains(where: { $0.id == selectedCategoryID }) {
             self.selectedCategoryID = nil
+        }
+    }
+}
+
+extension QlipXStore {
+    struct Snapshot: Codable {
+        var version: String
+        var categories: [Category]
+
+        init(version: String = "1.0", categories: [Category]) {
+            self.version = version
+            self.categories = categories
         }
     }
 }
