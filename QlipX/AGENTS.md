@@ -89,5 +89,5 @@ QlipX/
 # Current Priorities
 - [x] **M1 — Project Setup:** Xcode project created, `LSUIElement=true`, SPM dependency added, folder structure in place, app launches with menu bar icon visible
 - [x] **M2 — Core Data Model + Persistence:** models, store, JSON persistence, and window frame persistence are implemented
-- [ ] **M3 — Main Window UI Shell:** next milestone to start
+- [ ] **M3 — Main Window UI Shell:** in progress, roughly half complete
 ```
