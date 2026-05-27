@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject private var store: QlipXStore
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Categories: \(store.categories.count)")
         }
         .padding()
     }
@@ -21,4 +23,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(QlipXStore())
 }
