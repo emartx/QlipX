@@ -23,13 +23,13 @@ final class QlipXStore: ObservableObject {
         searchQuery: String = "",
         selectedCategoryID: UUID? = nil,
         isAddFormVisible: Bool = false,
-        persistenceManager: PersistenceManager = .shared
+        persistenceManager: PersistenceManager? = nil
     ) {
         self.categories = categories
         self.searchQuery = searchQuery
         self.selectedCategoryID = selectedCategoryID
         self.isAddFormVisible = isAddFormVisible
-        self.persistenceManager = persistenceManager
+        self.persistenceManager = persistenceManager ?? PersistenceManager.shared
 
         bindPersistence()
     }
@@ -51,7 +51,7 @@ final class QlipXStore: ObservableObject {
             return item.content.localizedCaseInsensitiveContains(normalizedSearchQuery)
                 || (item.label?.localizedCaseInsensitiveContains(normalizedSearchQuery) ?? false)
         }
-        .sorted(using: Item.sortComparator)
+        .sorted(by: Item.sortPredicate)
     }
 
     var selectedCategory: Category? {
@@ -121,7 +121,7 @@ final class QlipXStore: ObservableObject {
             items = categories.flatMap(\.items)
         }
 
-        return items.sorted(using: Item.sortComparator)
+        return items.sorted(by: Item.sortPredicate)
     }
 
     private var normalizedSearchQuery: String {
@@ -169,5 +169,7 @@ extension QlipXStore {
 }
 
 private extension Item {
-    static let sortComparator = SortComparator(\Item.order)
+    static let sortPredicate: (Item, Item) -> Bool = { lhs, rhs in
+        lhs.order < rhs.order
+    }
 }

@@ -45,7 +45,9 @@ final class PersistenceManager {
     func save(_ store: QlipXStore) {
         debounceTimer?.invalidate()
         debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
-            self?.saveImmediately(store)
+            Task { @MainActor in
+                self?.saveImmediately(store)
+            }
         }
     }
 

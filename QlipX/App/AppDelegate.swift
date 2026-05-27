@@ -21,13 +21,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         static let panelFrame = "qlipx.panelFrame"
     }
 
+    private var store: QlipXStore!
     private(set) var panel: NSPanel?
     private var statusItem: NSStatusItem?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        store = MainActor.assumeIsolated {
+            PersistenceManager.shared.load()
+        }
+
         panel = makePanel()
         statusItem = makeStatusItem()
         registerGlobalShortcut()
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        if let panel {
+            persistPanelFrame(panel)
+        }
+
+        MainActor.assumeIsolated {
+            PersistenceManager.shared.saveImmediately(store)
+        }
     }
 
     private func makePanel() -> NSPanel {
@@ -44,7 +59,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         panel.isReleasedWhenClosed = false
         panel.hidesOnDeactivate = false
         panel.delegate = self
-        panel.contentView = NSHostingView(rootView: ContentView())
+        panel.contentView = NSHostingView(rootView: ContentView().environmentObject(store))
         restorePanelFrame(panel)
 
         return panel
