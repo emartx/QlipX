@@ -15,16 +15,23 @@ final class QlipXStore: ObservableObject {
     @Published var selectedCategoryID: UUID?
     @Published var isAddFormVisible: Bool
 
+    private let persistenceManager: PersistenceManager
+    private var cancellables = Set<AnyCancellable>()
+
     init(
         categories: [Category] = [],
         searchQuery: String = "",
         selectedCategoryID: UUID? = nil,
-        isAddFormVisible: Bool = false
+        isAddFormVisible: Bool = false,
+        persistenceManager: PersistenceManager = .shared
     ) {
         self.categories = categories
         self.searchQuery = searchQuery
         self.selectedCategoryID = selectedCategoryID
         self.isAddFormVisible = isAddFormVisible
+        self.persistenceManager = persistenceManager
+
+        bindPersistence()
     }
 
     convenience init(snapshot: Snapshot) {
@@ -129,6 +136,23 @@ final class QlipXStore: ObservableObject {
         if !categories.contains(where: { $0.id == selectedCategoryID }) {
             self.selectedCategoryID = nil
         }
+    }
+
+    private func bindPersistence() {
+        Publishers.Merge4(
+            $categories.dropFirst().map { _ in },
+            $searchQuery.dropFirst().map { _ in },
+            $selectedCategoryID.dropFirst().map { _ in },
+            $isAddFormVisible.dropFirst().map { _ in }
+        )
+        .sink { [weak self] in
+            guard let self else {
+                return
+            }
+
+            persistenceManager.save(self)
+        }
+        .store(in: &cancellables)
     }
 }
 
