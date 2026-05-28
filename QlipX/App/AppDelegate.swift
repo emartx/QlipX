@@ -64,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         panel.titleVisibility = .visible
         panel.titlebarAppearsTransparent = false
         panel.delegate = self
-        panel.contentView = NSHostingView(rootView: MainPanelView().environmentObject(store))
+        panel.contentView = NSHostingView(rootView: ContentView().environmentObject(store))
         restorePanelFrame(panel)
 
         return panel
