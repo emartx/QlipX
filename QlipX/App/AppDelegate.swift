@@ -58,8 +58,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         panel.isMovableByWindowBackground = true
         panel.isReleasedWhenClosed = false
         panel.hidesOnDeactivate = false
+        panel.minSize = NSSize(width: 280, height: 360)
+        panel.maxSize = NSSize(width: 480, height: 800)
+        panel.title = String(localized: "app.title", defaultValue: "QlipX")
+        panel.titleVisibility = .visible
+        panel.titlebarAppearsTransparent = false
         panel.delegate = self
-        panel.contentView = NSHostingView(rootView: ContentView().environmentObject(store))
+        panel.contentView = NSHostingView(rootView: MainPanelView().environmentObject(store))
         restorePanelFrame(panel)
 
         return panel

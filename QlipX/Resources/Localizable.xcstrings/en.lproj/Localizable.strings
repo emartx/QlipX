@@ -1,5 +1,7 @@
 /* App title */
 "app.title" = "QlipX";
+"mainPanel.itemCount" = "items";
+"mainPanel.placeholder" = "Core panel content will go here.";
 
 /* Menu */
 "menu.about" = "About QlipX";
