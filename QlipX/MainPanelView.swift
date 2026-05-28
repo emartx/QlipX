@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainPanelView: View {
     @EnvironmentObject private var store: QlipXStore
 
     private var title: String {
@@ -61,7 +61,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    MainPanelView()
         .environmentObject(
             QlipXStore(
                 categories: [
@@ -79,6 +79,6 @@ struct ContentView: View {
 }
 
 #Preview("Empty State") {
-    ContentView()
+    MainPanelView()
         .environmentObject(QlipXStore())
 }
