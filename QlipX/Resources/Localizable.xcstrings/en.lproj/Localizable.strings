@@ -18,6 +18,7 @@
 
 /* Buttons */
 "button.copy" = "Copy";
+"button.copied" = "Copied";
 "button.cancel" = "Cancel";
 "button.save" = "Save";
 "button.edit" = "Edit";

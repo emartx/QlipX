@@ -119,7 +119,7 @@ private struct CategorySectionView: View {
             if category.isExpanded {
                 VStack(spacing: 8) {
                     ForEach(category.items) { item in
-                        ItemListRowView(item: item)
+                        ItemRowView(item: item)
                     }
                 }
                 .padding(.leading, 20)
@@ -128,22 +128,56 @@ private struct CategorySectionView: View {
     }
 }
 
-private struct ItemListRowView: View {
+private struct ItemRowView: View {
     let item: Item
 
+    @State private var isCopied = false
+    @State private var resetTask: Task<Void, Never>?
+
+    private var copyLabel: String {
+        String(localized: "button.copy", defaultValue: "Copy")
+    }
+
+    private var copiedLabel: String {
+        String(localized: "button.copied", defaultValue: "Copied")
+    }
+
+    private var contentFont: Font {
+        if MonospaceDetector.isMonospace(item.content) {
+            return .system(size: 12, weight: .regular, design: .monospaced)
+        }
+
+        return .system(size: 12)
+    }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            if let label = item.label, !label.isEmpty {
-                Text(label)
-                    .font(.system(size: 11, weight: .medium))
-                    .foregroundStyle(.secondary)
+        HStack(alignment: .top, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                if let label = item.label, !label.isEmpty {
+                    Text(label)
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(.secondary)
+                }
+
+                Text(item.content)
+                    .font(contentFont)
+                    .foregroundStyle(.primary)
+                    .textSelection(.enabled)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
 
-            Text(item.content)
-                .font(.system(size: 12))
-                .foregroundStyle(.primary)
-                .textSelection(.enabled)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            Button(action: copyItem) {
+                Text(isCopied ? "✓ \(copiedLabel)" : copyLabel)
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(isCopied ? Color.green : Color.primary)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 7)
+                    .background {
+                        Capsule(style: .continuous)
+                            .fill(isCopied ? Color.green.opacity(0.14) : Color.primary.opacity(0.08))
+                    }
+            }
+            .buttonStyle(.plain)
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
@@ -151,6 +185,28 @@ private struct ItemListRowView: View {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .fill(Color.primary.opacity(0.06))
         )
+        .onDisappear {
+            resetTask?.cancel()
+            resetTask = nil
+        }
+    }
+
+    private func copyItem() {
+        ClipboardManager.copy(item.content)
+        isCopied = true
+
+        resetTask?.cancel()
+        resetTask = Task {
+            try? await Task.sleep(for: .seconds(1.4))
+
+            guard !Task.isCancelled else {
+                return
+            }
+
+            await MainActor.run {
+                isCopied = false
+            }
+        }
     }
 }
 
