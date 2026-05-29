@@ -34,18 +34,7 @@ struct MainPanelView: View {
 
             CategoryTabsView()
 
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .fill(.regularMaterial)
-                .overlay {
-                    Text(
-                        String(
-                            localized: "mainPanel.placeholder",
-                            defaultValue: "Core panel content will go here."
-                        )
-                    )
-                    .font(.system(size: 12))
-                    .foregroundStyle(.secondary)
-                }
+            ItemListView()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .padding(16)
@@ -62,6 +51,109 @@ struct MainPanelView: View {
     }
 }
 
+private struct ItemListView: View {
+    @EnvironmentObject private var store: QlipXStore
+
+    private var emptyStateLabel: String {
+        String(localized: "mainPanel.emptyState", defaultValue: "No snippets yet.")
+    }
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 12, style: .continuous)
+            .fill(.regularMaterial)
+            .overlay {
+                if store.filteredCategories.isEmpty {
+                    ContentUnavailableView {
+                        Text(emptyStateLabel)
+                    }
+                    .font(.system(size: 12))
+                    .foregroundStyle(.secondary)
+                } else {
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 14) {
+                            ForEach(store.filteredCategories) { category in
+                                CategorySectionView(category: category)
+                            }
+                        }
+                        .padding(14)
+                    }
+                }
+            }
+    }
+}
+
+private struct CategorySectionView: View {
+    @EnvironmentObject private var store: QlipXStore
+
+    let category: Category
+
+    private var itemCountLabel: String {
+        String(localized: "mainPanel.category.itemCount", defaultValue: "items")
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Button {
+                store.toggleCategoryExpansion(id: category.id)
+            } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: category.isExpanded ? "chevron.down" : "chevron.right")
+                        .font(.system(size: 10, weight: .semibold))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 10)
+
+                    Text(category.name)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(.primary)
+
+                    Spacer(minLength: 8)
+
+                    Text("\(category.items.count) \(itemCountLabel)")
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(.secondary)
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+
+            if category.isExpanded {
+                VStack(spacing: 8) {
+                    ForEach(category.items) { item in
+                        ItemListRowView(item: item)
+                    }
+                }
+                .padding(.leading, 20)
+            }
+        }
+    }
+}
+
+private struct ItemListRowView: View {
+    let item: Item
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            if let label = item.label, !label.isEmpty {
+                Text(label)
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundStyle(.secondary)
+            }
+
+            Text(item.content)
+                .font(.system(size: 12))
+                .foregroundStyle(.primary)
+                .textSelection(.enabled)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .background(
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(Color.primary.opacity(0.06))
+        )
+    }
+}
+
 #Preview {
     MainPanelView()
         .environmentObject(
@@ -74,6 +166,14 @@ struct MainPanelView: View {
                             Item(content: "192.168.1.10", label: "Local", order: 0),
                             Item(content: "10.0.0.5", label: "Staging", order: 1)
                         ]
+                    ),
+                    Category(
+                        name: "Links",
+                        colorIndex: 1,
+                        items: [
+                            Item(content: "https://example.com/docs", label: "Docs", order: 0)
+                        ],
+                        isExpanded: false
                     )
                 ]
             )
@@ -166,6 +266,33 @@ private struct CategoryTabsView: View {
                     Category(name: "Links", colorIndex: 1)
                 ],
                 selectedCategoryID: selectedCategory.id
+            )
+        )
+}
+
+#Preview("Item List") {
+    ItemListView()
+        .environmentObject(
+            QlipXStore(
+                categories: [
+                    Category(
+                        name: "Network",
+                        colorIndex: 0,
+                        items: [
+                            Item(content: "192.168.1.10", label: "Local", order: 0),
+                            Item(content: "10.0.0.5", label: "Staging", order: 1)
+                        ]
+                    ),
+                    Category(
+                        name: "Links",
+                        colorIndex: 1,
+                        items: [
+                            Item(content: "https://example.com/docs", label: "Docs", order: 0),
+                            Item(content: "https://example.com/status", order: 1)
+                        ],
+                        isExpanded: false
+                    )
+                ]
             )
         )
 }

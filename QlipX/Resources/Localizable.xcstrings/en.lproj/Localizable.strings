@@ -2,6 +2,8 @@
 "app.title" = "QlipX";
 "mainPanel.itemCount" = "items";
 "mainPanel.category.all" = "All";
+"mainPanel.category.itemCount" = "items";
+"mainPanel.emptyState" = "No snippets yet.";
 "mainPanel.placeholder" = "Core panel content will go here.";
 
 /* Menu */

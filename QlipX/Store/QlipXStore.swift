@@ -54,6 +54,29 @@ final class QlipXStore: ObservableObject {
         .sorted(by: Item.sortPredicate)
     }
 
+    var filteredCategories: [Category] {
+        categoriesForSelectedScope.compactMap { category in
+            let filteredItems = category.items
+                .filter { item in
+                    guard !normalizedSearchQuery.isEmpty else {
+                        return true
+                    }
+
+                    return item.content.localizedCaseInsensitiveContains(normalizedSearchQuery)
+                        || (item.label?.localizedCaseInsensitiveContains(normalizedSearchQuery) ?? false)
+                }
+                .sorted(by: Item.sortPredicate)
+
+            guard !filteredItems.isEmpty else {
+                return nil
+            }
+
+            var filteredCategory = category
+            filteredCategory.items = filteredItems
+            return filteredCategory
+        }
+    }
+
     var selectedCategory: Category? {
         guard let selectedCategoryID else {
             return nil
@@ -112,6 +135,14 @@ final class QlipXStore: ObservableObject {
         categories[index].items.append(item)
     }
 
+    func toggleCategoryExpansion(id: UUID) {
+        guard let index = categories.firstIndex(where: { $0.id == id }) else {
+            return
+        }
+
+        categories[index].isExpanded.toggle()
+    }
+
     private var itemsForSelectedCategory: [Item] {
         let items: [Item]
 
@@ -122,6 +153,14 @@ final class QlipXStore: ObservableObject {
         }
 
         return items.sorted(by: Item.sortPredicate)
+    }
+
+    private var categoriesForSelectedScope: [Category] {
+        if let selectedCategory {
+            return [selectedCategory]
+        }
+
+        return categories
     }
 
     private var normalizedSearchQuery: String {
