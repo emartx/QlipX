@@ -102,6 +102,10 @@ private struct CategorySectionView: View {
                         .foregroundStyle(.secondary)
                         .frame(width: 10)
 
+                    Circle()
+                        .fill(ColorPalette.color(for: category.colorIndex))
+                        .frame(width: 8, height: 8)
+
                     Text(category.name)
                         .font(.system(size: 13, weight: .semibold))
                         .foregroundStyle(.primary)
