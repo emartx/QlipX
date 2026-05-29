@@ -33,6 +33,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         panel = makePanel()
         statusItem = makeStatusItem()
         registerGlobalShortcut()
+        showPanelOnLaunch()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -102,6 +103,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         KeyboardShortcuts.onKeyUp(for: .toggleQlipX) { [weak self] in
             self?.togglePanel(nil)
         }
+    }
+
+    private func showPanelOnLaunch() {
+        guard let panel else {
+            return
+        }
+
+        NSApp.activate(ignoringOtherApps: true)
+        panel.makeKeyAndOrderFront(nil)
     }
 
     private func restorePanelFrame(_ panel: NSPanel) {
