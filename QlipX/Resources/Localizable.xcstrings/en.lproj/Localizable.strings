@@ -4,6 +4,7 @@
 "mainPanel.category.all" = "All";
 "mainPanel.category.itemCount" = "items";
 "mainPanel.emptyState" = "No snippets yet.";
+"mainPanel.shortcutHint" = "⌘⇧Space";
 "mainPanel.placeholder" = "Core panel content will go here.";
 
 /* Menu */
