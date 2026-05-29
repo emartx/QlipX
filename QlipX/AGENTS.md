@@ -90,5 +90,5 @@ QlipX/
 - [x] **M1 — Project Setup:** Xcode project created, `LSUIElement=true`, SPM dependency added, folder structure in place, app launches with menu bar icon visible
 - [x] **M2 — Core Data Model + Persistence:** models, store, JSON persistence, and window frame persistence are implemented
 - [x] **M3 — Main Window UI Shell:** implemented
-- [ ] **M4 — Core UI:** in progress — `MainPanelView` with window chrome is implemented; continue with `CategoryTabsView`
+- [ ] **M4 — Core UI:** in progress — `MainPanelView`, `CategoryTabsView`, and `ItemListView` are implemented; continue with `ItemRowView`
 ```
