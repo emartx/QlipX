@@ -91,5 +91,6 @@ QlipX/
 - [x] **M2 — Core Data Model + Persistence:** models, store, JSON persistence, and window frame persistence are implemented
 - [x] **M3 — Main Window UI Shell:** implemented
 - [x] **M4 — Core UI:** implemented — `CategoryTabsView`, `ItemListView`, `ItemRowView`, `ColorPalette`, and `FooterView` are in place
-- [ ] **M5 — Item Management:**
+- [x] **M5 — Item Management:** implemented — inline add/edit form, item delete confirmation, and in-category drag-and-drop reordering are in place
+- [ ] **M6 — Category Management:**
 ```
