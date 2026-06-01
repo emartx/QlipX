@@ -15,26 +15,28 @@ struct ItemListView: View {
     }
 
     var body: some View {
-        RoundedRectangle(cornerRadius: 12, style: .continuous)
-            .fill(.regularMaterial)
-            .overlay {
-                if store.filteredCategories.isEmpty {
-                    ContentUnavailableView {
-                        Text(emptyStateLabel)
-                    }
-                    .font(.system(size: 12))
-                    .foregroundStyle(.secondary)
-                } else {
-                    ScrollView {
-                        LazyVStack(alignment: .leading, spacing: 14) {
-                            ForEach(store.filteredCategories) { category in
-                                CategorySectionView(category: category)
-                            }
-                        }
-                        .padding(14)
+        Group {
+            if store.displayedCategories.isEmpty {
+                ContentUnavailableView {
+                    Text(emptyStateLabel)
+                }
+                .font(.system(size: 12))
+                .foregroundStyle(.secondary)
+            } else {
+                List {
+                    ForEach(store.displayedCategories) { category in
+                        CategorySectionView(category: category)
                     }
                 }
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
             }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background {
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .fill(.regularMaterial)
+        }
     }
 }
 
@@ -48,7 +50,27 @@ private struct CategorySectionView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        Section {
+            if category.isExpanded {
+                ForEach(category.items) { item in
+                    ItemRowView(item: item, categoryID: category.id)
+                        .moveDisabled(store.isSearchActive)
+                        .listRowInsets(EdgeInsets(top: 4, leading: 20, bottom: 4, trailing: 8))
+                        .listRowSeparator(.hidden)
+                }
+                .onMove { source, destination in
+                    guard !store.isSearchActive else {
+                        return
+                    }
+
+                    store.moveItems(
+                        inCategoryID: category.id,
+                        fromOffsets: source,
+                        toOffset: destination
+                    )
+                }
+            }
+        } header: {
             Button {
                 store.toggleCategoryExpansion(id: category.id)
             } label: {
@@ -75,15 +97,6 @@ private struct CategorySectionView: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-
-            if category.isExpanded {
-                VStack(spacing: 8) {
-                    ForEach(category.items) { item in
-                        ItemRowView(item: item, categoryID: category.id)
-                    }
-                }
-                .padding(.leading, 20)
-            }
         }
     }
 }

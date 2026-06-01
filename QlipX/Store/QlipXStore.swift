@@ -78,6 +78,22 @@ final class QlipXStore: ObservableObject {
         }
     }
 
+    var displayedCategories: [Category] {
+        if isSearchActive {
+            return filteredCategories
+        }
+
+        return categoriesForSelectedScope.map { category in
+            var category = category
+            category.items.sort(by: Item.sortPredicate)
+            return category
+        }
+    }
+
+    var isSearchActive: Bool {
+        !normalizedSearchQuery.isEmpty
+    }
+
     var selectedCategory: Category? {
         guard let selectedCategoryID else {
             return nil
@@ -229,6 +245,23 @@ final class QlipXStore: ObservableObject {
         }
 
         categories[index].isExpanded.toggle()
+    }
+
+    func moveItems(
+        inCategoryID categoryID: UUID,
+        fromOffsets source: IndexSet,
+        toOffset destination: Int
+    ) {
+        guard let categoryIndex = categories.firstIndex(where: { $0.id == categoryID }) else {
+            return
+        }
+
+        categories[categoryIndex].items.sort(by: Item.sortPredicate)
+        categories[categoryIndex].items.move(fromOffsets: source, toOffset: destination)
+
+        for index in categories[categoryIndex].items.indices {
+            categories[categoryIndex].items[index].order = index
+        }
     }
 
     private var itemsForSelectedCategory: [Item] {
