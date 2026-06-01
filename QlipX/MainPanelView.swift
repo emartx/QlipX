@@ -343,12 +343,18 @@ private struct CategoryComboBox: NSViewRepresentable {
         comboBox.action = #selector(Coordinator.selectionDidChange(_:))
         comboBox.placeholderString = placeholder
         comboBox.font = .systemFont(ofSize: NSFont.systemFontSize)
+        comboBox.textChangeHandler = { newValue in
+            context.coordinator.updateText(newValue)
+        }
         comboBox.submitHandler = onSubmit
         comboBox.cancelHandler = onCancel
         return comboBox
     }
 
     func updateNSView(_ comboBox: SubmitAwareComboBox, context: Context) {
+        comboBox.textChangeHandler = { newValue in
+            context.coordinator.updateText(newValue)
+        }
         comboBox.submitHandler = onSubmit
         comboBox.cancelHandler = onCancel
         comboBox.removeAllItems()
@@ -366,27 +372,34 @@ private struct CategoryComboBox: NSViewRepresentable {
             self.parent = parent
         }
 
-        func controlTextDidChange(_ notification: Notification) {
-            guard let comboBox = notification.object as? NSComboBox else {
-                return
-            }
+        func updateText(_ text: String) {
+            parent.text = text
+        }
 
-            parent.text = comboBox.stringValue
+        func controlTextDidChange(_ notification: Notification) {
+            updateText((notification.object as? NSComboBox)?.stringValue ?? parent.text)
         }
 
         @objc
         func selectionDidChange(_ sender: NSComboBox) {
-            parent.text = sender.stringValue
+            updateText(sender.stringValue)
         }
     }
 }
 
 private final class SubmitAwareComboBox: NSComboBox {
+    var textChangeHandler: ((String) -> Void)?
     var submitHandler: (() -> Void)?
     var cancelHandler: (() -> Void)?
 
+    override func textDidChange(_ notification: Notification) {
+        super.textDidChange(notification)
+        textChangeHandler?(stringValue)
+    }
+
     override func textDidEndEditing(_ notification: Notification) {
         super.textDidEndEditing(notification)
+        textChangeHandler?(stringValue)
 
         guard
             let movementValue = notification.userInfo?["NSTextMovement"] as? Int,
