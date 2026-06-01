@@ -142,6 +142,19 @@ final class QlipXStore: ObservableObject {
         categories[index].items.append(item)
     }
 
+    func removeItem(id itemID: UUID, fromCategoryID categoryID: UUID) {
+        guard let categoryIndex = categories.firstIndex(where: { $0.id == categoryID }) else {
+            return
+        }
+
+        categories[categoryIndex].items.removeAll { $0.id == itemID }
+
+        if editingItemContext?.itemID == itemID {
+            editingItemContext = nil
+            isAddFormVisible = false
+        }
+    }
+
     func addItem(
         content: String,
         label: String?,

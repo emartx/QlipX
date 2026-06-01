@@ -95,6 +95,7 @@ private struct ItemRowView: View {
     let categoryID: UUID
 
     @State private var isCopied = false
+    @State private var isShowingDeleteConfirmation = false
     @State private var resetTask: Task<Void, Never>?
 
     private var copyLabel: String {
@@ -107,6 +108,14 @@ private struct ItemRowView: View {
 
     private var editLabel: String {
         String(localized: "button.edit", defaultValue: "Edit")
+    }
+
+    private var deleteLabel: String {
+        String(localized: "button.delete", defaultValue: "Delete")
+    }
+
+    private var confirmDeleteMessage: String {
+        String(localized: "alert.confirmDelete", defaultValue: "Are you sure you want to delete this item?")
     }
 
     private var contentFont: Font {
@@ -156,11 +165,27 @@ private struct ItemRowView: View {
             Button(editLabel) {
                 store.beginEditingItem(id: item.id, categoryID: categoryID)
             }
+
+            Button(deleteLabel, role: .destructive) {
+                isShowingDeleteConfirmation = true
+            }
+        }
+        .alert(deleteLabel, isPresented: $isShowingDeleteConfirmation) {
+            Button(cancelLabel, role: .cancel) {}
+            Button(deleteLabel, role: .destructive) {
+                store.removeItem(id: item.id, fromCategoryID: categoryID)
+            }
+        } message: {
+            Text(confirmDeleteMessage)
         }
         .onDisappear {
             resetTask?.cancel()
             resetTask = nil
         }
+    }
+
+    private var cancelLabel: String {
+        String(localized: "button.cancel", defaultValue: "Cancel")
     }
 
     private func copyItem() {
