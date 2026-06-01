@@ -79,7 +79,7 @@ private struct CategorySectionView: View {
             if category.isExpanded {
                 VStack(spacing: 8) {
                     ForEach(category.items) { item in
-                        ItemRowView(item: item)
+                        ItemRowView(item: item, categoryID: category.id)
                     }
                 }
                 .padding(.leading, 20)
@@ -89,7 +89,10 @@ private struct CategorySectionView: View {
 }
 
 private struct ItemRowView: View {
+    @EnvironmentObject private var store: QlipXStore
+
     let item: Item
+    let categoryID: UUID
 
     @State private var isCopied = false
     @State private var resetTask: Task<Void, Never>?
@@ -100,6 +103,10 @@ private struct ItemRowView: View {
 
     private var copiedLabel: String {
         String(localized: "button.copied", defaultValue: "Copied")
+    }
+
+    private var editLabel: String {
+        String(localized: "button.edit", defaultValue: "Edit")
     }
 
     private var contentFont: Font {
@@ -145,6 +152,11 @@ private struct ItemRowView: View {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .fill(Color.primary.opacity(0.06))
         )
+        .contextMenu {
+            Button(editLabel) {
+                store.beginEditingItem(id: item.id, categoryID: categoryID)
+            }
+        }
         .onDisappear {
             resetTask?.cancel()
             resetTask = nil

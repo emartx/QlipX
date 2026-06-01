@@ -14,6 +14,7 @@ final class QlipXStore: ObservableObject {
     @Published var searchQuery: String
     @Published var selectedCategoryID: UUID?
     @Published var isAddFormVisible: Bool
+    @Published private(set) var editingItemContext: EditingItemContext?
 
     private let persistenceManager: PersistenceManager
     private var cancellables = Set<AnyCancellable>()
@@ -94,15 +95,21 @@ final class QlipXStore: ObservableObject {
     }
 
     func showAddForm() {
+        editingItemContext = nil
         isAddFormVisible = true
     }
 
     func hideAddForm() {
+        editingItemContext = nil
         isAddFormVisible = false
     }
 
     func toggleAddForm() {
-        isAddFormVisible.toggle()
+        if isAddFormVisible {
+            hideAddForm()
+        } else {
+            showAddForm()
+        }
     }
 
     func setCategories(_ categories: [Category]) {
@@ -167,6 +174,42 @@ final class QlipXStore: ObservableObject {
         isAddFormVisible = false
     }
 
+    func beginEditingItem(id itemID: UUID, categoryID: UUID) {
+        guard
+            let category = categories.first(where: { $0.id == categoryID }),
+            let item = category.items.first(where: { $0.id == itemID })
+        else {
+            return
+        }
+
+        editingItemContext = EditingItemContext(
+            itemID: item.id,
+            originalCategoryID: category.id,
+            categoryName: category.name,
+            content: item.content,
+            label: item.label ?? ""
+        )
+        isAddFormVisible = true
+    }
+
+    func submitItemForm(
+        content: String,
+        label: String?,
+        categoryName: String
+    ) {
+        if let editingItemContext {
+            updateItem(
+                id: editingItemContext.itemID,
+                fromCategoryID: editingItemContext.originalCategoryID,
+                content: content,
+                label: label,
+                categoryName: categoryName
+            )
+        } else {
+            addItem(content: content, label: label, categoryName: categoryName)
+        }
+    }
+
     func toggleCategoryExpansion(id: UUID) {
         guard let index = categories.firstIndex(where: { $0.id == id }) else {
             return
@@ -197,6 +240,59 @@ final class QlipXStore: ObservableObject {
 
     private var normalizedSearchQuery: String {
         searchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private func updateItem(
+        id itemID: UUID,
+        fromCategoryID originalCategoryID: UUID,
+        content: String,
+        label: String?,
+        categoryName: String
+    ) {
+        let normalizedCategoryName = categoryName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let normalizedContent = content.trimmingCharacters(in: .whitespacesAndNewlines)
+        let normalizedLabel = label?.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard
+            !normalizedCategoryName.isEmpty,
+            !normalizedContent.isEmpty,
+            let sourceCategoryIndex = categories.firstIndex(where: { $0.id == originalCategoryID }),
+            let sourceItemIndex = categories[sourceCategoryIndex].items.firstIndex(where: { $0.id == itemID })
+        else {
+            return
+        }
+
+        let existingItem = categories[sourceCategoryIndex].items[sourceItemIndex]
+        let destinationCategoryID = resolveCategoryID(for: normalizedCategoryName)
+
+        if destinationCategoryID == originalCategoryID {
+            categories[sourceCategoryIndex].items[sourceItemIndex].content = normalizedContent
+            categories[sourceCategoryIndex].items[sourceItemIndex].label =
+                normalizedLabel?.isEmpty == true ? nil : normalizedLabel
+            categories[sourceCategoryIndex].isExpanded = true
+        } else {
+            categories[sourceCategoryIndex].items.remove(at: sourceItemIndex)
+
+            guard let destinationCategoryIndex = categories.firstIndex(where: { $0.id == destinationCategoryID }) else {
+                return
+            }
+
+            let nextOrder = (categories[destinationCategoryIndex].items.map(\.order).max() ?? -1) + 1
+            let movedItem = Item(
+                id: existingItem.id,
+                content: normalizedContent,
+                label: normalizedLabel?.isEmpty == true ? nil : normalizedLabel,
+                createdAt: existingItem.createdAt,
+                order: nextOrder
+            )
+
+            categories[destinationCategoryIndex].items.append(movedItem)
+            categories[destinationCategoryIndex].isExpanded = true
+        }
+
+        selectedCategoryID = destinationCategoryID
+        editingItemContext = nil
+        isAddFormVisible = false
     }
 
     private func resolveCategoryID(for categoryName: String) -> UUID {
@@ -244,6 +340,14 @@ final class QlipXStore: ObservableObject {
 }
 
 extension QlipXStore {
+    struct EditingItemContext: Equatable {
+        let itemID: UUID
+        let originalCategoryID: UUID
+        let categoryName: String
+        let content: String
+        let label: String
+    }
+
     struct Snapshot: Codable {
         var version: String
         var categories: [Category]

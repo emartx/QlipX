@@ -53,6 +53,14 @@ struct AddItemFormView: View {
         String(localized: "button.cancel", defaultValue: "Cancel")
     }
 
+    private var formTitle: String {
+        if store.editingItemContext != nil {
+            return String(localized: "button.edit", defaultValue: "Edit")
+        }
+
+        return String(localized: "button.addItem", defaultValue: "Add Item")
+    }
+
     private var canSubmit: Bool {
         !categoryName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
             && !content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -64,6 +72,10 @@ struct AddItemFormView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            Text(formTitle)
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(.secondary)
+
             LabeledField(label: categoryLabel) {
                 CategoryComboBox(
                     text: $categoryName,
@@ -112,13 +124,10 @@ struct AddItemFormView: View {
                 .strokeBorder(Color.primary.opacity(0.08), lineWidth: 1)
         }
         .onAppear {
-            if categoryName.isEmpty, let selectedCategory = store.selectedCategory {
-                categoryName = selectedCategory.name
-            }
-
-            DispatchQueue.main.async {
-                focusedField = .content
-            }
+            applyFormState()
+        }
+        .onChange(of: store.editingItemContext) { _, _ in
+            applyFormState()
         }
         .onExitCommand(perform: cancel)
     }
@@ -129,7 +138,7 @@ struct AddItemFormView: View {
             return
         }
 
-        store.addItem(content: content, label: label, categoryName: categoryName)
+        store.submitItemForm(content: content, label: label, categoryName: categoryName)
         categoryName = store.selectedCategory?.name ?? categoryName
         content = ""
         label = ""
@@ -140,6 +149,26 @@ struct AddItemFormView: View {
         content = ""
         label = ""
         store.hideAddForm()
+    }
+
+    private func applyFormState() {
+        if let editingItemContext = store.editingItemContext {
+            categoryName = editingItemContext.categoryName
+            content = editingItemContext.content
+            label = editingItemContext.label
+        } else if let selectedCategory = store.selectedCategory {
+            categoryName = selectedCategory.name
+            content = ""
+            label = ""
+        } else {
+            categoryName = ""
+            content = ""
+            label = ""
+        }
+
+        DispatchQueue.main.async {
+            focusedField = .content
+        }
     }
 }
 
