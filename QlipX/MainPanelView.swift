@@ -208,6 +208,14 @@ private struct AddItemFormView: View {
         String(localized: "placeholder.label", defaultValue: "Optional label")
     }
 
+    private var saveLabel: String {
+        String(localized: "button.save", defaultValue: "Save")
+    }
+
+    private var cancelLabel: String {
+        String(localized: "button.cancel", defaultValue: "Cancel")
+    }
+
     private var canSubmit: Bool {
         !categoryName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
             && !content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -234,6 +242,7 @@ private struct AddItemFormView: View {
                 TextField(contentLabel, text: $content, prompt: Text(contentPlaceholder))
                     .textFieldStyle(.roundedBorder)
                     .focused($focusedField, equals: .content)
+                    .submitLabel(.done)
                     .onSubmit(submit)
             }
 
@@ -241,7 +250,19 @@ private struct AddItemFormView: View {
                 TextField(itemLabelLabel, text: $label, prompt: Text(labelPlaceholder))
                     .textFieldStyle(.roundedBorder)
                     .focused($focusedField, equals: .label)
+                    .submitLabel(.done)
                     .onSubmit(submit)
+            }
+
+            HStack(spacing: 8) {
+                Spacer()
+
+                Button(cancelLabel, action: cancel)
+                    .keyboardShortcut(.cancelAction)
+
+                Button(saveLabel, action: submit)
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(!canSubmit)
             }
         }
         .padding(12)
