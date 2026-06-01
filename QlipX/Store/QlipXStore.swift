@@ -135,6 +135,38 @@ final class QlipXStore: ObservableObject {
         categories[index].items.append(item)
     }
 
+    func addItem(
+        content: String,
+        label: String?,
+        categoryName: String
+    ) {
+        let normalizedCategoryName = categoryName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let normalizedContent = content.trimmingCharacters(in: .whitespacesAndNewlines)
+        let normalizedLabel = label?.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard !normalizedCategoryName.isEmpty, !normalizedContent.isEmpty else {
+            return
+        }
+
+        let categoryID = resolveCategoryID(for: normalizedCategoryName)
+
+        guard let index = categories.firstIndex(where: { $0.id == categoryID }) else {
+            return
+        }
+
+        let nextOrder = (categories[index].items.map(\.order).max() ?? -1) + 1
+        let item = Item(
+            content: normalizedContent,
+            label: normalizedLabel?.isEmpty == true ? nil : normalizedLabel,
+            order: nextOrder
+        )
+
+        categories[index].items.append(item)
+        categories[index].isExpanded = true
+        selectedCategoryID = categories[index].id
+        isAddFormVisible = false
+    }
+
     func toggleCategoryExpansion(id: UUID) {
         guard let index = categories.firstIndex(where: { $0.id == id }) else {
             return
@@ -165,6 +197,22 @@ final class QlipXStore: ObservableObject {
 
     private var normalizedSearchQuery: String {
         searchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private func resolveCategoryID(for categoryName: String) -> UUID {
+        if let category = categories.first(
+            where: { $0.name.trimmingCharacters(in: .whitespacesAndNewlines).localizedCaseInsensitiveCompare(categoryName) == .orderedSame }
+        ) {
+            return category.id
+        }
+
+        let category = Category(
+            name: categoryName,
+            colorIndex: categories.count % ColorPalette.colors.count
+        )
+
+        categories.append(category)
+        return category.id
     }
 
     private func normalizeSelectedCategoryIfNeeded() {

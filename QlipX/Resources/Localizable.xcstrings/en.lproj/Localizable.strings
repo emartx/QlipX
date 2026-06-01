@@ -35,6 +35,8 @@
 /* Placeholders */
 "placeholder.search" = "Search...";
 "placeholder.newCategory" = "New category";
+"placeholder.content" = "Snippet content";
+"placeholder.label" = "Optional label";
 
 /* Alerts */
 "alert.noResults" = "No results";
