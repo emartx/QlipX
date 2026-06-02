@@ -23,6 +23,7 @@
 "button.cancel" = "Cancel";
 "button.save" = "Save";
 "button.edit" = "Edit";
+"button.rename" = "Rename";
 "button.delete" = "Delete";
 "button.addItem" = "Add Item";
 
@@ -41,3 +42,9 @@
 /* Alerts */
 "alert.noResults" = "No results";
 "alert.confirmDelete" = "Are you sure you want to delete this item?";
+"category.deleteItems" = "Delete all items";
+"category.moveItems" = "Move items to…";
+"category.deleteLastDisabled" = "You can’t delete the last remaining category.";
+"category.movePrompt" = "Move items to";
+"category.deleteEmptyMessage" = "Delete this empty category?";
+"category.deleteMessage" = "What would you like to do with the items in this category?";

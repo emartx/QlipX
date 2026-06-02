@@ -145,8 +145,87 @@ final class QlipXStore: ObservableObject {
         categories[index] = category
     }
 
+    func renameCategory(id categoryID: UUID, to proposedName: String) {
+        let normalizedName = proposedName.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard
+            !normalizedName.isEmpty,
+            let categoryIndex = categories.firstIndex(where: { $0.id == categoryID })
+        else {
+            return
+        }
+
+        let hasDuplicate = categories.contains {
+            $0.id != categoryID
+                && $0.name.trimmingCharacters(in: .whitespacesAndNewlines)
+                    .localizedCaseInsensitiveCompare(normalizedName) == .orderedSame
+        }
+
+        guard !hasDuplicate else {
+            return
+        }
+
+        categories[categoryIndex].name = normalizedName
+
+        if editingItemContext?.originalCategoryID == categoryID {
+            editingItemContext?.categoryName = normalizedName
+        }
+    }
+
     func removeCategory(id: UUID) {
         categories.removeAll { $0.id == id }
+        normalizeSelectedCategoryIfNeeded()
+    }
+
+    func deleteCategoryAndItems(id categoryID: UUID) {
+        guard categories.count > 1 else {
+            return
+        }
+
+        if editingItemContext?.originalCategoryID == categoryID {
+            editingItemContext = nil
+            isAddFormVisible = false
+        }
+
+        removeCategory(id: categoryID)
+    }
+
+    func moveItemsAndDeleteCategory(id categoryID: UUID, destinationCategoryID: UUID) {
+        guard
+            categoryID != destinationCategoryID,
+            let sourceCategoryIndex = categories.firstIndex(where: { $0.id == categoryID }),
+            let destinationCategoryIndex = categories.firstIndex(where: { $0.id == destinationCategoryID })
+        else {
+            return
+        }
+
+        let movedItems = categories[sourceCategoryIndex].items.sorted(by: Item.sortPredicate)
+        let baseOrder = (categories[destinationCategoryIndex].items.map(\.order).max() ?? -1) + 1
+
+        for (offset, item) in movedItems.enumerated() {
+            categories[destinationCategoryIndex].items.append(
+                Item(
+                    id: item.id,
+                    content: item.content,
+                    label: item.label,
+                    createdAt: item.createdAt,
+                    order: baseOrder + offset
+                )
+            )
+        }
+
+        categories[destinationCategoryIndex].isExpanded = true
+
+        if editingItemContext?.originalCategoryID == categoryID {
+            editingItemContext?.originalCategoryID = destinationCategoryID
+            editingItemContext?.categoryName = categories[destinationCategoryIndex].name
+        }
+
+        if selectedCategoryID == categoryID {
+            selectedCategoryID = destinationCategoryID
+        }
+
+        categories.remove(at: sourceCategoryIndex)
         normalizeSelectedCategoryIfNeeded()
     }
 
@@ -388,8 +467,8 @@ final class QlipXStore: ObservableObject {
 extension QlipXStore {
     struct EditingItemContext: Equatable {
         let itemID: UUID
-        let originalCategoryID: UUID
-        let categoryName: String
+        var originalCategoryID: UUID
+        var categoryName: String
         let content: String
         let label: String
     }
