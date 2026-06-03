@@ -41,7 +41,7 @@ struct PanelControlsView: View {
                     .textFieldStyle(.plain)
                     .focused($isSearchFocused)
                     .onExitCommand {
-                        store.updateSearchQuery("")
+                        clearSearchAndFocusList()
                     }
                 }
                 .padding(.horizontal, 12)
@@ -85,5 +85,11 @@ struct PanelControlsView: View {
 
     private func focusSearchField() {
         isSearchFocused = true
+    }
+
+    private func clearSearchAndFocusList() {
+        store.updateSearchQuery("")
+        isSearchFocused = false
+        store.requestListFocus()
     }
 }

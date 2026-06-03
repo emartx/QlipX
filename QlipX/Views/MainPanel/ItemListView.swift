@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ItemListView: View {
     @EnvironmentObject private var store: QlipXStore
+    @FocusState private var isListFocused: Bool
 
     private var emptyStateLabel: String {
         String(localized: "mainPanel.emptyState", defaultValue: "No snippets yet.")
@@ -22,12 +23,16 @@ struct ItemListView: View {
                 }
                 .font(.system(size: 12))
                 .foregroundStyle(.secondary)
+                .focusable()
+                .focused($isListFocused)
             } else {
                 List {
                     ForEach(store.displayedCategories) { category in
                         CategorySectionView(category: category)
                     }
                 }
+                .focusable()
+                .focused($isListFocused)
                 .listStyle(.plain)
                 .scrollContentBackground(.hidden)
             }
@@ -36,6 +41,9 @@ struct ItemListView: View {
         .background {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .fill(.regularMaterial)
+        }
+        .onChange(of: store.listFocusRequestID) { _, _ in
+            isListFocused = true
         }
     }
 }

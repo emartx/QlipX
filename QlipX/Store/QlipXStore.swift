@@ -15,6 +15,7 @@ final class QlipXStore: ObservableObject {
     @Published var selectedCategoryID: UUID?
     @Published var isAddFormVisible: Bool
     @Published private(set) var searchFocusRequestID: Int
+    @Published private(set) var listFocusRequestID: Int
     @Published private(set) var editingItemContext: EditingItemContext?
 
     private let persistenceManager: PersistenceManager
@@ -26,6 +27,7 @@ final class QlipXStore: ObservableObject {
         selectedCategoryID: UUID? = nil,
         isAddFormVisible: Bool = false,
         searchFocusRequestID: Int = 0,
+        listFocusRequestID: Int = 0,
         persistenceManager: PersistenceManager? = nil
     ) {
         self.categories = categories
@@ -33,6 +35,7 @@ final class QlipXStore: ObservableObject {
         self.selectedCategoryID = selectedCategoryID
         self.isAddFormVisible = isAddFormVisible
         self.searchFocusRequestID = searchFocusRequestID
+        self.listFocusRequestID = listFocusRequestID
         self.persistenceManager = persistenceManager ?? PersistenceManager.shared
 
         bindPersistence()
@@ -111,6 +114,10 @@ final class QlipXStore: ObservableObject {
 
     func requestSearchFocus() {
         searchFocusRequestID += 1
+    }
+
+    func requestListFocus() {
+        listFocusRequestID += 1
     }
 
     func selectCategory(id: UUID?) {
