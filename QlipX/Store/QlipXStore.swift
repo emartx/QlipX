@@ -14,6 +14,7 @@ final class QlipXStore: ObservableObject {
     @Published var searchQuery: String
     @Published var selectedCategoryID: UUID?
     @Published var isAddFormVisible: Bool
+    @Published private(set) var searchFocusRequestID: Int
     @Published private(set) var editingItemContext: EditingItemContext?
 
     private let persistenceManager: PersistenceManager
@@ -24,12 +25,14 @@ final class QlipXStore: ObservableObject {
         searchQuery: String = "",
         selectedCategoryID: UUID? = nil,
         isAddFormVisible: Bool = false,
+        searchFocusRequestID: Int = 0,
         persistenceManager: PersistenceManager? = nil
     ) {
         self.categories = categories
         self.searchQuery = searchQuery
         self.selectedCategoryID = selectedCategoryID
         self.isAddFormVisible = isAddFormVisible
+        self.searchFocusRequestID = searchFocusRequestID
         self.persistenceManager = persistenceManager ?? PersistenceManager.shared
 
         bindPersistence()
@@ -104,6 +107,10 @@ final class QlipXStore: ObservableObject {
 
     func updateSearchQuery(_ searchQuery: String) {
         self.searchQuery = searchQuery
+    }
+
+    func requestSearchFocus() {
+        searchFocusRequestID += 1
     }
 
     func selectCategory(id: UUID?) {

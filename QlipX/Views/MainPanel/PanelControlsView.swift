@@ -66,9 +66,24 @@ struct PanelControlsView: View {
                 .help(addItemLabel)
             }
 
+            Button(action: focusSearchField) {
+                EmptyView()
+            }
+            .keyboardShortcut("k", modifiers: .command)
+            .frame(width: 0, height: 0)
+            .opacity(0)
+            .accessibilityHidden(true)
+
             if store.isAddFormVisible {
                 AddItemFormView()
             }
         }
+        .onChange(of: store.searchFocusRequestID) { _, _ in
+            focusSearchField()
+        }
+    }
+
+    private func focusSearchField() {
+        isSearchFocused = true
     }
 }
