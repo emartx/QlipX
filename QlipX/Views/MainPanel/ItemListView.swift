@@ -12,7 +12,11 @@ struct ItemListView: View {
     @FocusState private var isListFocused: Bool
 
     private var emptyStateLabel: String {
-        String(localized: "mainPanel.emptyState", defaultValue: "No snippets yet.")
+        if store.isSearchActive {
+            return String(localized: "alert.noResults", defaultValue: "No results")
+        }
+
+        return String(localized: "mainPanel.emptyState", defaultValue: "No snippets yet.")
     }
 
     var body: some View {
