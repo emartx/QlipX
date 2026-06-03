@@ -93,5 +93,6 @@ QlipX/
 - [x] **M4 — Core UI:** implemented — `CategoryTabsView`, `ItemListView`, `ItemRowView`, `ColorPalette`, and `FooterView` are in place
 - [x] **M5 — Item Management:** implemented — inline add/edit form, item delete confirmation, and in-category drag-and-drop reordering are in place
 - [x] **M6 — Category Management:** implemented — category tab rename/delete flows, delete safeguards, and item move-on-delete are in place
-- [ ] **M7 — Search:**
+- [x] **M7 — Search:** implemented — always-visible search bar, `⌘K` focus, live filtering, escape-to-clear, and no-results empty state are in place
+- [ ] **M8 — Export:**
 ```
