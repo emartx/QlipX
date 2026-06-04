@@ -94,5 +94,6 @@ QlipX/
 - [x] **M5 — Item Management:** implemented — inline add/edit form, item delete confirmation, and in-category drag-and-drop reordering are in place
 - [x] **M6 — Category Management:** implemented — category tab rename/delete flows, delete safeguards, and item move-on-delete are in place
 - [x] **M7 — Search:** implemented — always-visible search bar, `⌘K` focus, live filtering, escape-to-clear, and no-results empty state are in place
-- [ ] **M8 — Export:**
+- [x] **M8 — Export:** implemented — export sheet, title bar + menu bar access, JSON/plain text exports, and success confirmation are in place
+- [ ] **M9 — About Window:**
 ```
