@@ -43,6 +43,12 @@ struct MainPanelView: View {
             alignment: .topLeading
         )
         .background(.ultraThinMaterial)
+        .sheet(isPresented: $store.isExportSheetVisible) {
+            ExportSheetView(
+                onExportJSON: store.hideExportSheet,
+                onExportPlainText: store.hideExportSheet
+            )
+        }
     }
 }
 

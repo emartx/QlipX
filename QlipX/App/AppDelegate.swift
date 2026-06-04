@@ -24,6 +24,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     private var store: QlipXStore!
     private(set) var panel: NSPanel?
     private var statusItem: NSStatusItem?
+    private var statusMenu: NSMenu?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         store = MainActor.assumeIsolated {
@@ -66,24 +67,60 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         panel.titlebarAppearsTransparent = false
         panel.delegate = self
         panel.contentView = NSHostingView(rootView: MainPanelView().environmentObject(store))
+        panel.addTitlebarAccessoryViewController(makeExportAccessory())
         restorePanelFrame(panel)
 
         return panel
     }
 
+    private func makeExportAccessory() -> NSTitlebarAccessoryViewController {
+        let accessory = NSTitlebarAccessoryViewController()
+        accessory.layoutAttribute = .right
+
+        let hostingView = NSHostingView(rootView: TitleBarExportButton(action: showExportSheet))
+        hostingView.frame = NSRect(x: 0, y: 0, width: 32, height: 28)
+        accessory.view = hostingView
+
+        return accessory
+    }
+
     private func makeStatusItem() -> NSStatusItem {
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        statusMenu = makeStatusMenu()
 
         if let button = statusItem.button {
             button.image = NSImage(systemSymbolName: "paperclip", accessibilityDescription: "QlipX")
             button.image?.isTemplate = true
             button.imagePosition = .imageOnly
-            button.action = #selector(togglePanel(_:))
+            button.action = #selector(handleStatusItemClick(_:))
             button.target = self
-            button.sendAction(on: [.leftMouseUp])
+            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
         }
 
         return statusItem
+    }
+
+    private func makeStatusMenu() -> NSMenu {
+        let menu = NSMenu()
+        menu.addItem(
+            withTitle: String(localized: "menu.export", defaultValue: "Export"),
+            action: #selector(handleExportMenuItem(_:)),
+            keyEquivalent: ""
+        )
+        menu.items.last?.target = self
+        return menu
+    }
+
+    @objc
+    private func handleStatusItemClick(_ sender: Any?) {
+        if NSApp.currentEvent?.type == .rightMouseUp, let statusItem, let statusMenu {
+            statusItem.menu = statusMenu
+            statusItem.button?.performClick(nil)
+            statusItem.menu = nil
+            return
+        }
+
+        togglePanel(sender)
     }
 
     @objc
@@ -99,6 +136,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         panel.makeKeyAndOrderFront(sender)
     }
 
+    @objc
+    private func handleExportMenuItem(_ sender: Any?) {
+        showExportSheet()
+    }
+
     private func registerGlobalShortcut() {
         KeyboardShortcuts.onKeyUp(for: .toggleQlipX) { [weak self] in
             self?.togglePanel(nil)
@@ -112,6 +154,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
         NSApp.activate(ignoringOtherApps: true)
         panel.makeKeyAndOrderFront(nil)
+    }
+
+    private func showExportSheet() {
+        guard let panel else {
+            return
+        }
+
+        NSApp.activate(ignoringOtherApps: true)
+        panel.makeKeyAndOrderFront(nil)
+        MainActor.assumeIsolated {
+            store.showExportSheet()
+        }
     }
 
     private func restorePanelFrame(_ panel: NSPanel) {
@@ -144,6 +198,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     func windowDidResize(_ notification: Notification) {
         guard let window = notification.object as? NSWindow else { return }
         persistPanelFrame(window)
+    }
+}
+
+private struct TitleBarExportButton: View {
+    let action: () -> Void
+
+    private var exportLabel: String {
+        String(localized: "menu.export", defaultValue: "Export")
+    }
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: "square.and.arrow.up")
+                .font(.system(size: 12, weight: .semibold))
+                .frame(width: 28, height: 28)
+        }
+        .buttonStyle(.borderless)
+        .help(exportLabel)
     }
 }
 

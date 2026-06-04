@@ -14,6 +14,7 @@ final class QlipXStore: ObservableObject {
     @Published var searchQuery: String
     @Published var selectedCategoryID: UUID?
     @Published var isAddFormVisible: Bool
+    @Published var isExportSheetVisible: Bool
     @Published private(set) var searchFocusRequestID: Int
     @Published private(set) var listFocusRequestID: Int
     @Published private(set) var editingItemContext: EditingItemContext?
@@ -26,6 +27,7 @@ final class QlipXStore: ObservableObject {
         searchQuery: String = "",
         selectedCategoryID: UUID? = nil,
         isAddFormVisible: Bool = false,
+        isExportSheetVisible: Bool = false,
         searchFocusRequestID: Int = 0,
         listFocusRequestID: Int = 0,
         persistenceManager: PersistenceManager? = nil
@@ -34,6 +36,7 @@ final class QlipXStore: ObservableObject {
         self.searchQuery = searchQuery
         self.selectedCategoryID = selectedCategoryID
         self.isAddFormVisible = isAddFormVisible
+        self.isExportSheetVisible = isExportSheetVisible
         self.searchFocusRequestID = searchFocusRequestID
         self.listFocusRequestID = listFocusRequestID
         self.persistenceManager = persistenceManager ?? PersistenceManager.shared
@@ -122,6 +125,14 @@ final class QlipXStore: ObservableObject {
 
     func selectCategory(id: UUID?) {
         selectedCategoryID = id
+    }
+
+    func showExportSheet() {
+        isExportSheetVisible = true
+    }
+
+    func hideExportSheet() {
+        isExportSheetVisible = false
     }
 
     func showAddForm() {

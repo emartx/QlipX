@@ -9,6 +9,7 @@
 
 /* Menu */
 "menu.about" = "About QlipX";
+"menu.export" = "Export";
 "menu.exportJSON" = "Export as JSON";
 "menu.exportPlainText" = "Export as Plain Text";
 "menu.preferences" = "Preferences";
