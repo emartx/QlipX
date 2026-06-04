@@ -46,7 +46,7 @@ struct MainPanelView: View {
         .sheet(isPresented: $store.isExportSheetVisible) {
             ExportSheetView(
                 onExportJSON: exportJSON,
-                onExportPlainText: store.hideExportSheet
+                onExportPlainText: exportPlainText
             )
         }
     }
@@ -57,6 +57,15 @@ struct MainPanelView: View {
             store.hideExportSheet()
         } catch {
             NSLog("ExportManager.exportJSON failed: %@", error.localizedDescription)
+        }
+    }
+
+    private func exportPlainText() {
+        do {
+            _ = try ExportManager.exportPlainText(store: store)
+            store.hideExportSheet()
+        } catch {
+            NSLog("ExportManager.exportPlainText failed: %@", error.localizedDescription)
         }
     }
 }

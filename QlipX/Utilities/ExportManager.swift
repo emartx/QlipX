@@ -21,6 +21,10 @@ final class ExportManager {
         try shared.exportJSON(store: store)
     }
 
+    static func exportPlainText(store: QlipXStore) throws -> URL {
+        try shared.exportPlainText(store: store)
+    }
+
     func exportJSON(store: QlipXStore) throws -> URL {
         let payload = JSONExportPayload(
             exportedAt: Date(),
@@ -49,6 +53,35 @@ final class ExportManager {
         return destinationURL
     }
 
+    func exportPlainText(store: QlipXStore) throws -> URL {
+        let sortedCategories = store.categories
+            .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+
+        let sections = sortedCategories.map { category in
+            let lines = category.items
+                .sorted(by: { $0.order < $1.order })
+                .map { item in
+                    if let label = item.label, !label.isEmpty {
+                        return "\(label): \(item.content)"
+                    }
+
+                    return item.content
+                }
+                .joined(separator: "\n")
+
+            return """
+            === \(category.name) ===
+
+            \(lines)
+            """
+        }
+
+        let content = sections.joined(separator: "\n\n")
+        let destinationURL = downloadsDirectoryURL.appendingPathComponent(plainTextFileName, isDirectory: false)
+        try content.write(to: destinationURL, atomically: true, encoding: .utf8)
+        return destinationURL
+    }
+
     private var downloadsDirectoryURL: URL {
         fileManager.urls(for: .downloadsDirectory, in: .userDomainMask).first
             ?? URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("Downloads", isDirectory: true)
@@ -56,6 +89,10 @@ final class ExportManager {
 
     private var jsonFileName: String {
         "QlipX-export-\(fileDateFormatter.string(from: Date())).json"
+    }
+
+    private var plainTextFileName: String {
+        "QlipX-export-\(fileDateFormatter.string(from: Date())).txt"
     }
 
     private var fileDateFormatter: DateFormatter {
