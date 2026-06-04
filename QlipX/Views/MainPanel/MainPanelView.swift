@@ -45,9 +45,18 @@ struct MainPanelView: View {
         .background(.ultraThinMaterial)
         .sheet(isPresented: $store.isExportSheetVisible) {
             ExportSheetView(
-                onExportJSON: store.hideExportSheet,
+                onExportJSON: exportJSON,
                 onExportPlainText: store.hideExportSheet
             )
+        }
+    }
+
+    private func exportJSON() {
+        do {
+            _ = try ExportManager.exportJSON(store: store)
+            store.hideExportSheet()
+        } catch {
+            NSLog("ExportManager.exportJSON failed: %@", error.localizedDescription)
         }
     }
 }
