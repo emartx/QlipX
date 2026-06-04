@@ -16,6 +16,7 @@
 "menu.quit" = "Quit QlipX";
 "sheet.export.title" = "Export";
 "sheet.export.subtitle" = "Choose a format to save your snippets to Downloads.";
+"export.success" = "Saved to Downloads";
 
 /* Shortcut */
 "shortcut.togglePanel" = "Toggle QlipX panel";

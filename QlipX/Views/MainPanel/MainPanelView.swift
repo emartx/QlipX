@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainPanelView: View {
     @EnvironmentObject private var store: QlipXStore
+    @State private var exportSuccessTask: Task<Void, Never>?
+    @State private var isShowingExportSuccess = false
 
     private var title: String {
         String(localized: "app.title", defaultValue: "QlipX")
@@ -16,6 +18,10 @@ struct MainPanelView: View {
 
     private var itemCountLabel: String {
         String(localized: "mainPanel.itemCount", defaultValue: "items")
+    }
+
+    private var exportSuccessLabel: String {
+        String(localized: "export.success", defaultValue: "Saved to Downloads")
     }
 
     var body: some View {
@@ -49,12 +55,33 @@ struct MainPanelView: View {
                 onExportPlainText: exportPlainText
             )
         }
+        .overlay(alignment: .bottom) {
+            if isShowingExportSuccess {
+                Text(exportSuccessLabel)
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(.primary)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background {
+                        Capsule(style: .continuous)
+                            .fill(.regularMaterial)
+                    }
+                    .padding(.bottom, 12)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+        .animation(.easeOut(duration: 0.18), value: isShowingExportSuccess)
+        .onDisappear {
+            exportSuccessTask?.cancel()
+            exportSuccessTask = nil
+        }
     }
 
     private func exportJSON() {
         do {
             _ = try ExportManager.exportJSON(store: store)
             store.hideExportSheet()
+            showExportSuccess()
         } catch {
             NSLog("ExportManager.exportJSON failed: %@", error.localizedDescription)
         }
@@ -64,8 +91,26 @@ struct MainPanelView: View {
         do {
             _ = try ExportManager.exportPlainText(store: store)
             store.hideExportSheet()
+            showExportSuccess()
         } catch {
             NSLog("ExportManager.exportPlainText failed: %@", error.localizedDescription)
+        }
+    }
+
+    private func showExportSuccess() {
+        exportSuccessTask?.cancel()
+        isShowingExportSuccess = true
+
+        exportSuccessTask = Task {
+            try? await Task.sleep(for: .seconds(1.8))
+
+            guard !Task.isCancelled else {
+                return
+            }
+
+            await MainActor.run {
+                isShowingExportSuccess = false
+            }
         }
     }
 }
