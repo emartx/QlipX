@@ -57,16 +57,24 @@ struct MainPanelView: View {
         }
         .overlay(alignment: .bottom) {
             if isShowingExportSuccess {
-                Text(exportSuccessLabel)
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(.primary)
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 10)
-                    .background {
-                        Capsule(style: .continuous)
-                            .fill(.regularMaterial)
-                    }
-                    .padding(.bottom, 12)
+                Label {
+                    Text(exportSuccessLabel)
+                } icon: {
+                    Image(systemName: "checkmark.circle.fill")
+                }
+                .font(.system(size: 13, weight: .bold))
+                .foregroundStyle(Color.green)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 11)
+                .background {
+                    Capsule(style: .continuous)
+                        .fill(Color.green.opacity(0.14))
+                }
+                .overlay {
+                    Capsule(style: .continuous)
+                        .strokeBorder(Color.green.opacity(0.24), lineWidth: 1)
+                }
+                .padding(.bottom, 12)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
