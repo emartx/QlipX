@@ -62,12 +62,15 @@ final class ExportManager {
                 .sorted(by: { $0.order < $1.order })
                 .map { item in
                     if let label = item.label, !label.isEmpty {
-                        return "\(label): \(item.content)"
+                        return """
+                        \(label):
+                        \(item.content)
+                        """
                     }
 
                     return item.content
                 }
-                .joined(separator: "\n")
+                .joined(separator: "\n\n")
 
             return """
             === \(category.name) ===
