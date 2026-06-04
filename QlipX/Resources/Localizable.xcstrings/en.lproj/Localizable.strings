@@ -13,6 +13,8 @@
 "menu.exportPlainText" = "Export as Plain Text";
 "menu.preferences" = "Preferences";
 "menu.quit" = "Quit QlipX";
+"sheet.export.title" = "Export";
+"sheet.export.subtitle" = "Choose a format to save your snippets to Downloads.";
 
 /* Shortcut */
 "shortcut.togglePanel" = "Toggle QlipX panel";
