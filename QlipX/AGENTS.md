@@ -95,5 +95,5 @@ QlipX/
 - [x] **M6 — Category Management:** implemented — category tab rename/delete flows, delete safeguards, and item move-on-delete are in place
 - [x] **M7 — Search:** implemented — always-visible search bar, `⌘K` focus, live filtering, escape-to-clear, and no-results empty state are in place
 - [x] **M8 — Export:** implemented — export sheet, title bar + menu bar access, JSON/plain text exports, and success confirmation are in place
-- [ ] **M9 — About Window:**
+- [ ] **M9 — About Window:** in progress — custom non-resizable secondary window is implemented; about content and links remain
 ```
