@@ -16,6 +16,7 @@ extension KeyboardShortcuts.Name {
     )
 }
 
+@MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     private enum DefaultsKey {
         static let panelFrame = "qlipx.panelFrame"
@@ -103,6 +104,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     private func makeStatusMenu() -> NSMenu {
         let menu = NSMenu()
         menu.addItem(
+            withTitle: String(localized: "menu.about", defaultValue: "About QlipX"),
+            action: #selector(handleAboutMenuItem(_:)),
+            keyEquivalent: ""
+        )
+        menu.items.last?.target = self
+
+        menu.addItem(.separator())
+
+        menu.addItem(
             withTitle: String(localized: "menu.export", defaultValue: "Export"),
             action: #selector(handleExportMenuItem(_:)),
             keyEquivalent: ""
@@ -139,6 +149,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     @objc
     private func handleExportMenuItem(_ sender: Any?) {
         showExportSheet()
+    }
+
+    @objc
+    private func handleAboutMenuItem(_ sender: Any?) {
+        AboutWindowController.shared.show()
     }
 
     private func registerGlobalShortcut() {

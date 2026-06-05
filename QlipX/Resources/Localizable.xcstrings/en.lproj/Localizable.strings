@@ -17,6 +17,8 @@
 "sheet.export.title" = "Export";
 "sheet.export.subtitle" = "Choose a format to save your snippets to Downloads.";
 "export.success" = "Saved to Downloads";
+"about.version" = "Version";
+"about.developerName" = "Seyed Emad Armoun";
 
 /* Shortcut */
 "shortcut.togglePanel" = "Toggle QlipX panel";

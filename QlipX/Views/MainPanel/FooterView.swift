@@ -50,18 +50,6 @@ struct FooterView: View {
     }
 
     private func showAbout() {
-        let existingWindowIdentifiers = Set(NSApp.windows.map { ObjectIdentifier($0) })
-
-        NSApp.orderFrontStandardAboutPanel(nil)
-        NSApp.activate(ignoringOtherApps: true)
-
-        let aboutWindow = NSApp.windows.first {
-            !existingWindowIdentifiers.contains(ObjectIdentifier($0))
-        } ?? NSApp.windows.first {
-            $0 !== NSApp.keyWindow && $0 !== NSApp.mainWindow && $0.isVisible
-        }
-
-        aboutWindow?.level = .floating
-        aboutWindow?.makeKeyAndOrderFront(nil)
+        AboutWindowController.shared.show()
     }
 }
