@@ -25,7 +25,7 @@ final class AboutWindowController {
 
     private func makeWindow() -> NSWindow {
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 320, height: 240),
+            contentRect: NSRect(x: 0, y: 0, width: 460, height: 620),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false

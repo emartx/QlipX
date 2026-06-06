@@ -19,6 +19,19 @@
 "export.success" = "Saved to Downloads";
 "about.version" = "Version";
 "about.developerName" = "Seyed Emad Armoun";
+"about.intro" = "QlipX is a free macOS utility built and maintained in spare time.";
+"about.credits" = "Designed and developed with ❤️ by Emad (EmArTx) in Berlin, Germany.";
+"about.website" = "Website";
+"about.github" = "GitHub";
+"about.supportTitle" = "Support QlipX";
+"about.supportText" = "If QlipX saves you time and makes your workflow easier, consider supporting its development.";
+"about.buyMeACoffee" = "☕ Buy Me a Coffee";
+"about.koFi" = "💜 Ko-fi";
+"about.otherSupportTitle" = "Other Ways to Support";
+"about.starGitHub" = "⭐ Star QlipX on GitHub";
+"about.reportBugs" = "🐞 Report Bugs";
+"about.suggestFeatures" = "💡 Suggest Features";
+"about.share" = "📢 Share QlipX with Others";
 
 /* Shortcut */
 "shortcut.togglePanel" = "Toggle QlipX panel";
