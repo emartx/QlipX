@@ -82,19 +82,17 @@ struct AboutView: View {
     }
 
     private var versionValue: String {
-        let shortVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-        let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-
-        switch (shortVersion, buildNumber) {
-        case let (shortVersion?, buildNumber?) where shortVersion != buildNumber:
-            return "\(shortVersion) (\(buildNumber))"
-        case let (shortVersion?, _):
+        if let shortVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+           !shortVersion.isEmpty {
             return shortVersion
-        case let (_, buildNumber?):
-            return buildNumber
-        default:
-            return "1.0.0"
         }
+
+        if let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String,
+           !buildNumber.isEmpty {
+            return buildNumber
+        }
+
+        return "1.0"
     }
 
     var body: some View {
