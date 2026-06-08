@@ -1,3 +1,7 @@
+# Session Start Rule
+- Before starting any task, read both `AGENTS.md` and `CURRENT_STATE.md`
+- Treat `CURRENT_STATE.md` as the live status file for implemented milestones, completed services, TODOs, and new decisions
+
 # Project Overview
 - App name: **QlipX** (Quick + Clip + X)
 - macOS menu bar app for storing and instantly copying frequently used text snippets
