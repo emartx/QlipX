@@ -13,15 +13,15 @@
 - Current phase: post-M9, entering **M10 - Polish & Stabilize**
 
 ## Implemented Milestones
-- `M1` Project setup is complete.
-- `M2` Floating panel behavior is complete.
-- `M3` Data layer and persistence are complete.
-- `M4` Core UI shell and item list experience are complete.
-- `M5` Item management is complete.
-- `M6` Category management is complete.
-- `M7` Search is complete.
-- `M8` Export is complete.
-- `M9` About window is complete.
+- [x] **M1 — Project Setup:** Xcode project created, `LSUIElement=true`, SPM dependency added, folder structure in place, app launches with menu bar icon visible
+- [x] **M2 — Core Data Model + Persistence:** models, store, JSON persistence, and window frame persistence are implemented
+- [x] **M3 — Main Window UI Shell:** implemented
+- [x] **M4 — Core UI:** implemented — `CategoryTabsView`, `ItemListView`, `ItemRowView`, `ColorPalette`, and `FooterView` are in place
+- [x] **M5 — Item Management:** implemented — inline add/edit form, item delete confirmation, and in-category drag-and-drop reordering are in place
+- [x] **M6 — Category Management:** implemented — category tab rename/delete flows, delete safeguards, and item move-on-delete are in place
+- [x] **M7 — Search:** implemented — always-visible search bar, `⌘K` focus, live filtering, escape-to-clear, and no-results empty state are in place
+- [x] **M8 — Export:** implemented — export sheet, title bar + menu bar access, JSON/plain text exports, and success confirmation are in place
+- [x] **M9 — About Window:** implemented — custom about window, footer + menu bar access, about content, and external links are in place
 
 ## Implemented Components And Services
 - `AppDelegate`: owns app lifecycle, menu bar item, `NSPanel`, global shortcut registration, export entry point, and panel frame persistence.

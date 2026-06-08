@@ -73,7 +73,7 @@ QlipX/
 
 # Development Workflow
 - Work milestone by milestone as defined in `QlipX-ProductionPlan.md`
-- Current milestone always listed in `# Current Priorities` below
+- Current milestone and detailed completion status always live in `CURRENT_STATE.md`
 - Each session: one focused task only — avoid working on multiple milestones simultaneously
 - Provide AI with: relevant PRD section + ARD section + current file + exact Xcode error text
 - Commit after each milestone is verified working
@@ -89,15 +89,3 @@ QlipX/
 - Do NOT enable App Sandbox (breaks global shortcuts and file access)
 - Do NOT add automated tests in v1.0 — manual testing only
 - Do NOT work on post-v1.0 features (Persian localization, import, custom shortcuts, iCloud)
-
-# Current Priorities
-- [x] **M1 — Project Setup:** Xcode project created, `LSUIElement=true`, SPM dependency added, folder structure in place, app launches with menu bar icon visible
-- [x] **M2 — Core Data Model + Persistence:** models, store, JSON persistence, and window frame persistence are implemented
-- [x] **M3 — Main Window UI Shell:** implemented
-- [x] **M4 — Core UI:** implemented — `CategoryTabsView`, `ItemListView`, `ItemRowView`, `ColorPalette`, and `FooterView` are in place
-- [x] **M5 — Item Management:** implemented — inline add/edit form, item delete confirmation, and in-category drag-and-drop reordering are in place
-- [x] **M6 — Category Management:** implemented — category tab rename/delete flows, delete safeguards, and item move-on-delete are in place
-- [x] **M7 — Search:** implemented — always-visible search bar, `⌘K` focus, live filtering, escape-to-clear, and no-results empty state are in place
-- [x] **M8 — Export:** implemented — export sheet, title bar + menu bar access, JSON/plain text exports, and success confirmation are in place
-- [x] **M9 — About Window:** implemented — custom about window, footer + menu bar access, about content, and external links are in place
-```
