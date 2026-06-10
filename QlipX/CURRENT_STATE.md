@@ -34,7 +34,6 @@
 - `MonospaceDetector`: identifies content that should render in monospace styling.
 
 ## Open TODOs
-- Add the exit row to the menu bar icon
 - Finish `M10 - Polish & Stabilize`.
 - Verify empty-state behavior on first launch with no data.
 - Verify corrupt JSON recovery is graceful and does not crash the app.
@@ -65,4 +64,4 @@
 - When a new blocker or unresolved bug appears, add it under `Open TODOs`.
 
 ## Last Updated
-2026/06/08 by Emad
+2026/06/10 by Codex

@@ -118,6 +118,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             keyEquivalent: ""
         )
         menu.items.last?.target = self
+
+        menu.addItem(.separator())
+
+        menu.addItem(
+            withTitle: String(localized: "menu.quit", defaultValue: "Quit QlipX"),
+            action: #selector(handleQuitMenuItem(_:)),
+            keyEquivalent: "q"
+        )
+        menu.items.last?.target = self
         return menu
     }
 
@@ -154,6 +163,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     @objc
     private func handleAboutMenuItem(_ sender: Any?) {
         AboutWindowController.shared.show()
+    }
+
+    @objc
+    private func handleQuitMenuItem(_ sender: Any?) {
+        NSApp.terminate(sender)
     }
 
     private func registerGlobalShortcut() {
