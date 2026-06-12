@@ -58,10 +58,22 @@
 - Keep all user-facing strings localized through `String(localized:)` and `Localizable.xcstrings`.
 - Do not expand scope into sync, import, clipboard history, analytics, or other post-v1.0 features.
 
+## Raw Ideas For Next Phases
+- Add an optional quick-capture flow so copied text can be sent into QlipX with a shortcut such as `Ctrl+C` followed by an app-specific trigger, or a dedicated global shortcut that imports the current clipboard content directly.
+- Explore a background clipboard listener mode that detects newly copied text and offers a lightweight confirmation to save it into the currently selected category.
+- Add a "copy then auto-save" onboarding option so users can choose between manual item entry and clipboard-driven capture.
+- Support a one-step "capture to inbox" category so new clipboard entries land in a default holding area before being organized.
+- Add a small capture toast or HUD near the menu bar so clipboard imports feel immediate and do not require opening the main panel.
+- Consider duplicate detection for clipboard imports so repeated copies do not create accidental item spam.
+- Add per-category or global rules for clipboard capture, such as trim whitespace, preserve line breaks, or auto-detect code blocks.
+- Consider a configurable shortcut system for capture actions so users can choose a key combo that does not conflict with their normal workflow.
+- Evaluate whether `Ctrl+C` itself should remain untouched and QlipX should instead react to clipboard changes after the system copy completes, since overriding standard copy behavior could be fragile across apps.
+- If clipboard capture is added, define privacy expectations clearly, especially whether QlipX only reacts on explicit shortcut use or continuously observes clipboard changes.
+
 ## Update Rules
 - When a milestone status changes, update this file and `AGENTS.md`.
 - When architecture or workflow decisions change, record the new decision here.
 - When a new blocker or unresolved bug appears, add it under `Open TODOs`.
 
 ## Last Updated
-2026/06/10 by Codex
+2026/06/12 by Codex
