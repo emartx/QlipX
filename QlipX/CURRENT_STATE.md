@@ -66,8 +66,18 @@
 - Add a small capture toast or HUD near the menu bar so clipboard imports feel immediate and do not require opening the main panel.
 - Consider duplicate detection for clipboard imports so repeated copies do not create accidental item spam.
 - Add per-category or global rules for clipboard capture, such as trim whitespace, preserve line breaks, or auto-detect code blocks.
+- Add rule-based category detection so captured text can be routed automatically using keyword lists, regex patterns, URL/domain matches, language hints, or content length thresholds.
+- Support rule-based label generation, for example extracting the first line, matching ticket IDs, pulling a domain name, or shortening long snippets into a stable title.
+- Provide a category rule editor with priority ordering, preview matches, and a fallback destination when no rule applies.
+- Allow mixed automation where rules run first and unresolved items fall back to manual review or another classifier.
 - Consider a configurable shortcut system for capture actions so users can choose a key combo that does not conflict with their normal workflow.
 - Evaluate whether `Ctrl+C` itself should remain untouched and QlipX should instead react to clipboard changes after the system copy completes, since overriding standard copy behavior could be fragile across apps.
+- Explore an embedded on-device model that suggests both category and label from captured text without sending content to any external service.
+- Consider a lightweight local embedding pipeline that compares new clipboard text against existing items or category descriptions to infer the best category automatically.
+- Add confidence scoring for model-based category and label suggestions so low-confidence results can be shown for confirmation instead of being auto-filed silently.
+- Let users correct model suggestions and store those corrections as future training signals, heuristics, or example-based ranking data.
+- Evaluate a hybrid classifier where explicit rules override model output, and the embedded model only handles ambiguous or previously unseen content.
+- If an embedded model is added, track app size, memory usage, and startup impact carefully so classification remains fast enough for clipboard-driven capture.
 - If clipboard capture is added, define privacy expectations clearly, especially whether QlipX only reacts on explicit shortcut use or continuously observes clipboard changes.
 
 ## Update Rules
