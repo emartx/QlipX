@@ -4,6 +4,10 @@
 
 QlipX is a macOS menu bar app for storing and quickly copying reusable text snippets.
 
+## Demo
+
+![QlipX demo](QlipX/docs/media/qlipx-demo.gif)
+
 ## Open
 
 Open `QlipX.xcodeproj` in Xcode and run the `QlipX` scheme.
