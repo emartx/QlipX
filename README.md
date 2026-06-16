@@ -6,6 +6,8 @@ QlipX is a lightweight macOS menu bar app for storing, organizing, and reusing t
 
 QlipX is built as a personal-use utility with a native macOS feel: simple categories, fast copy access, local persistence, and no unnecessary setup.
 
+Designed and developed by Emad (EmArTx) in Berlin, Germany.
+
 ## Demo
 
 ![QlipX demo](QlipX/docs/media/qlipx-demo.gif)
@@ -53,6 +55,16 @@ Live status are tracked here:
 QlipX stores its data locally on the Mac as a JSON file at `~/Library/Application Support/QlipX/data.json`.
 
 The current architecture is intentionally local-first and does not include sync or analytics.
+
+## Support
+
+QlipX is a free macOS utility built and maintained in spare time. If it saves you time and makes your workflow easier, you can support the project here:
+
+- Author Website: https://emartx.net
+- GitHub: https://github.com/emartx/QlipX
+- Buy Me a Coffee: https://www.buymeacoffee.com/emartx
+- Ko-fi: https://ko-fi.com/emartx
+- Report bugs and Suggest features: https://github.com/emartx/QlipX/issues
 
 ## License
 
