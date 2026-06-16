@@ -10,6 +10,14 @@ QlipX is built as a personal-use utility with a native macOS feel: simple catego
 
 ![QlipX demo](QlipX/docs/media/qlipx-demo.gif)
 
+## How to Run
+
+- The latest build (`.dmg` file) can be downloaded from the GitHub [Releases](https://github.com/emartx/QlipX/releases) section.
+- Open the `.dmg` file and drag QlipX to the `Applications` folder.
+- After that, open the app and allow it in macOS if Gatekeeper shows a security prompt for an unsigned build.
+- QlipX runs as a menu bar app, so once launched it appears in the macOS menu bar instead of the Dock.
+- Click the menu bar icon to open the panel, or use the global shortcut `Cmd + Shift + Space`.
+
 ## Using QlipX
 
 - Open the floating panel from the menu bar icon or with the global shortcut `Cmd + Shift + Space`.
