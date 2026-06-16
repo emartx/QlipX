@@ -34,11 +34,23 @@ Designed and developed by Emad (EmArTx) in Berlin, Germany.
 - Reorder items inside a category with drag and drop when search is not active.
 - Export your data as JSON or plain text from the title bar action or the menu bar menu.
 
+## Agentic Development
+
+QlipX has been developed in an agentic workflow. The product idea and planning documents were developed with Claude, while the implementation work was carried out with Codex.
+
+This repo also keeps agent-facing project context in version control:
+
+- [QlipX/AGENTS.md](QlipX/AGENTS.md) defines project guidance, conventions, and working rules for implementation sessions.
+- [QlipX/CURRENT_STATE.md](QlipX/CURRENT_STATE.md) is the live status snapshot for milestones, architecture decisions, and open validation work.
+- The documents under `QlipX/docs` capture the broader planning and product context used during development.
+
+Keeping these files updated makes it easier to continue development consistently across agent sessions and future iterations.
+
 ## Project Status
 
 QlipX has completed the core v1 milestones through the About window.
 
-Live status are tracked here:
+Live status is tracked here:
 
 - [QlipX/CURRENT_STATE.md](QlipX/CURRENT_STATE.md)
 
