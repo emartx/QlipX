@@ -40,6 +40,12 @@ Live status are tracked here:
 - Swift Package Manager
 - `KeyboardShortcuts` for the global shortcut flow
 
+## Local Data
+
+QlipX stores its data locally on the Mac as a JSON file at `~/Library/Application Support/QlipX/data.json`.
+
+The current architecture is intentionally local-first and does not include sync or analytics.
+
 ## License
 
 QlipX is open source software licensed under the MIT License.
