@@ -1,6 +1,6 @@
-<img alt="QlipX Logo" align="right" src="https://raw.githubusercontent.com/emartx/QlipX/refs/heads/main/QlipX/Assets.xcassets/AppIcon.appiconset/icon_128x128.png" width="13%" />
-
 # QlipX
+
+<img alt="QlipX Logo" align="right" src="https://raw.githubusercontent.com/emartx/QlipX/refs/heads/main/QlipX/Assets.xcassets/AppIcon.appiconset/icon_128x128.png" width="13%" />
 
 QlipX is a lightweight macOS menu bar app for storing, organizing, and reusing text snippets. It is designed for people who repeatedly copy the same links, notes, commands, replies, templates, or code fragments and want them available in a fast floating panel.
 
