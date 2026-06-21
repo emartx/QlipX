@@ -36,11 +36,13 @@
       }
   });
   
-  $("#modal_trigger").leanModal({
-		top: 100,
-		overlay: 0.6,
-		closeButton: ".modal_close"
-});
+  if ($("#modal_trigger").length && $.fn.leanModal) {
+    $("#modal_trigger").leanModal({
+      top: 100,
+      overlay: 0.6,
+      closeButton: ".modal_close"
+    });
+  }
 
 $(function() {
 		// Calling Login Form
