@@ -97,16 +97,18 @@ https://templatemo.com/tm-570-chain-app-dev
 
       .about-note,
       .support-note {
-        color: #777;
+        color: #e8e8e8;
         font-size: 15px;
         line-height: 28px;
       }
 
       .support-links {
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         gap: 14px;
         margin-top: 25px;
+        margin-bottom: 60px;
       }
 
       .support-links a {
@@ -115,7 +117,7 @@ https://templatemo.com/tm-570-chain-app-dev
         gap: 8px;
         padding: 10px 18px;
         border-radius: 999px;
-        background: rgba(75, 142, 241, 0.1);
+        background: rgb(228 238 255 / 80%);
         color: #4b8ef1;
         font-weight: 500;
       }
@@ -136,6 +138,36 @@ https://templatemo.com/tm-570-chain-app-dev
 
       .footer-widget ul.single-column {
         width: 100%;
+      }
+
+      .about-me-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+
+      .about-me-wrapper .avatar-and-text {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .about-me-wrapper .avatar-and-text p {
+        font-size: 32px;
+      }
+
+      .about-me-wrapper .avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+      }
+
+      .about-me-wrapper p {
+        font-size: 40px;
+        color: white;
+        font-weight: bold;
       }
     </style>
 
@@ -571,11 +603,16 @@ https://templatemo.com/tm-570-chain-app-dev
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
           <div class="section-heading">
-            <h4>Built in Berlin for people who reuse the same text all day</h4>
-            <p class="support-note">QlipX is designed and developed by Emad (EmArTx) as a native macOS utility for developers, creators, and other power users who want faster snippet reuse without the overhead of a full clipboard manager.</p>
+            <div class="about-me-wrapper">
+              <div class="avatar-and-text">
+                <img src="assets/images/EmArTx_Avatar.jpg" alt="EmArTx Avatar" class="avatar" />
+                <p>Designed and developed by</p>
+              </div>
+              <p>Emad (EmArTx) in Berlin, Germany</p>
+            </div>
             <div class="support-links">
-              <a href="https://emartx.net"><i class="fa fa-globe"></i> Website</a>
-              <a href="https://github.com/emartx/QlipX"><i class="fab fa-github"></i> GitHub</a>
+              <a href="https://emartx.net"><i class="fa fa-globe"></i> My Website</a>
+              <a href="https://github.com/emartx"><i class="fab fa-github"></i> My GitHub</a>
               <a href="https://www.buymeacoffee.com/emartx"><i class="fa fa-coffee"></i> Buy Me a Coffee</a>
               <a href="https://ko-fi.com/emartx"><i class="fa fa-heart"></i> Ko-fi</a>
             </div>
