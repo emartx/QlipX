@@ -10,7 +10,7 @@ Designed and developed by Emad (EmArTx) in Berlin, Germany.
 
 ## Demo
 
-![QlipX demo](QlipX/docs/media/qlipx-demo.gif)
+![QlipX demo](docs/assets/qlipx-demo.gif)
 
 ## How to Run
 
