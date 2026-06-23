@@ -1268,7 +1268,28 @@ The Clients
   height: 62px;
 }
 
+.the-clients .nacc .thumb .client-content .screenshot-img {
+  width: 400px !important;
+}
+
+.the-clients .nacc .thumb .client-content .title-box {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.the-clients .nacc .thumb .client-content .title-box i {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 52px;
+}
+
+.the-clients .nacc .thumb .client-content .title-box h5 {
+  color: white;
+}
+
 .the-clients .nacc .thumb .client-content {
+  display: flex;
   padding: 60px 30px;
   background-image: url(../images/client-bg.png);
   background-size: cover;
