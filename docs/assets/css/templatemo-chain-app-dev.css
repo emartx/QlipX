@@ -1291,6 +1291,7 @@ The Clients
 
 .the-clients .nacc .thumb .client-content {
   display: flex;
+  gap: 80px;
   padding: 30px 30px;
   background-image: url(../images/client-bg.png);
   background-size: cover;
